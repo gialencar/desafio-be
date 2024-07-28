@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import "./App.css";
 import searchIcon from "./assets/search.svg";
 import Header from "./components/Header";
+import { formatPhoneNumber } from "./utils/formatPhoneNumber";
 
 type Employee = {
   id: string;
@@ -47,7 +48,7 @@ function App() {
         <table className="w-full">
           <thead className="bg-gradient-to-b from-blue-primary-gradient-start to-blue-primary-gradient-end text-white-neutral">
             <tr>
-              <th className="rounded-tl-lg">FOTO</th>
+              <th className="rounded-tl-lg pl-8">FOTO</th>
               <th>NOME</th>
               <th>CARGO</th>
               <th>DATA DE ADMISSÃO</th>
@@ -57,7 +58,7 @@ function App() {
           <tbody>
             {employees.map((employee) => (
               <tr key={employee.id}>
-                <td>
+                <td className="pl-8">
                   <img
                     src={employee.image}
                     alt={employee.name}
@@ -66,8 +67,10 @@ function App() {
                 </td>
                 <td>{employee.name}</td>
                 <td>{employee.job}</td>
-                <td>{employee.admission_date}</td>
-                <td>{employee.phone}</td>
+                <td>
+                  {new Date(employee.admission_date).toLocaleDateString()}
+                </td>
+                <td>{formatPhoneNumber(employee.phone)}</td>
               </tr>
             ))}
           </tbody>
