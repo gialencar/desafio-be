@@ -15,6 +15,7 @@ type Employee = {
 
 function App() {
   const [employees, setEmployees] = useState<Employee[]>([]);
+  const [search, setSearch] = useState<string>("");
 
   useEffect(() => {
     fetch("http://localhost:3000/employees")
@@ -35,6 +36,10 @@ function App() {
           <input
             placeholder="Pesquisar"
             className="border border-gray-10 rounded-lg px-4 py-3 w-72 max-sm:w-full"
+            value={search}
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+              setSearch(e.target.value)
+            }
           />
           <img
             src={searchIcon}
@@ -56,23 +61,31 @@ function App() {
             </tr>
           </thead>
           <tbody>
-            {employees.map((employee) => (
-              <tr key={employee.id}>
-                <td className="pl-8">
-                  <img
-                    src={employee.image}
-                    alt={employee.name}
-                    className="rounded-full w-10 h-10 mr-3"
-                  />
-                </td>
-                <td>{employee.name}</td>
-                <td>{employee.job}</td>
-                <td>
-                  {new Date(employee.admission_date).toLocaleDateString()}
-                </td>
-                <td>{formatPhoneNumber(employee.phone)}</td>
-              </tr>
-            ))}
+            {employees
+              .filter((employee) => {
+                return (
+                  employee.name.toLowerCase().includes(search.toLowerCase()) ||
+                  employee.job.toLowerCase().includes(search.toLowerCase()) ||
+                  employee.phone.includes(search)
+                );
+              })
+              .map((employee) => (
+                <tr key={employee.id}>
+                  <td className="pl-8">
+                    <img
+                      src={employee.image}
+                      alt={employee.name}
+                      className="rounded-full w-10 h-10 mr-3"
+                    />
+                  </td>
+                  <td>{employee.name}</td>
+                  <td>{employee.job}</td>
+                  <td>
+                    {new Date(employee.admission_date).toLocaleDateString()}
+                  </td>
+                  <td>{formatPhoneNumber(employee.phone)}</td>
+                </tr>
+              ))}
           </tbody>
         </table>
       </main>
