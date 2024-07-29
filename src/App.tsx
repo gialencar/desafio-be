@@ -4,8 +4,7 @@ import searchIcon from "./assets/search.svg";
 import Header from "./components/Header";
 import { formatPhoneNumber } from "./utils/formatPhoneNumber";
 
-const API_URL =
-  process.env.VITE_API_URL || "http://localhost:3000/employees";
+const API_URL = "http://localhost:3000/employees";
 
 type Employee = {
   id: string;
