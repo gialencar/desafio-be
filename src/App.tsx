@@ -16,15 +16,24 @@ type Employee = {
 function App() {
   const [employees, setEmployees] = useState<Employee[]>([]);
   const [search, setSearch] = useState<string>("");
+  const [expandedRows, setExpandedRows] = useState<string[]>([]);
 
   useEffect(() => {
     fetch("http://localhost:3000/employees")
       .then((response) => response.json())
       .then((data) => {
-        console.log(data);
         setEmployees(data);
       });
   }, []);
+
+  const toggleRow = (id: string) => {
+    setExpandedRows((prev) => {
+      if (prev.includes(id)) {
+        return prev.filter((item) => item !== id);
+      }
+      return [...prev, id];
+    });
+  };
 
   return (
     <>
@@ -57,10 +66,6 @@ function App() {
               <th className="rounded-tl-lg pl-4">FOTO</th>
               <th className="text-center">NOME</th>
               <th className="rounded-tr-lg text-right pr-8"> ● </th>
-              {/* <th>CARGO</th>
-              <th>DATA DE ADMISSÃO</th>
-              <th>TELEFONE</th>
-              <th ></th> */}
             </tr>
           </thead>
           <tbody>
@@ -83,22 +88,69 @@ function App() {
                   </td>
                   <td className="text-center">{employee.name}</td>
                   <td className="text-right pr-5">
-                    <button className="">
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="32"
-                        height="32"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        stroke-width="2"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        className="text-blue-primary-gradient-end"
-                      >
-                        <path d="m6 9 6 6 6-6" />
-                      </svg>
+                    <button className="" onClick={() => toggleRow(employee.id)}>
+                      {expandedRows.includes(employee.id) ? (
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="32"
+                          height="32"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="currentColor"
+                          stroke-width="2"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          className="text-blue-primary-gradient-end"
+                        >
+                          <path d="m18 15-6-6-6 6" />
+                        </svg>
+                      ) : (
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="32"
+                          height="32"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="currentColor"
+                          stroke-width="2"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          className="text-blue-primary-gradient-end"
+                        >
+                          <path d="m6 9 6 6 6-6" />
+                        </svg>
+                      )}
                     </button>
+                    <div
+                      className={`${
+                        expandedRows.includes(employee.id)
+                          ? "max-h-80"
+                          : "max-h-0"
+                      } overflow-hidden transition-all duration-300 ease-in-out`}
+                    >
+                      <div className="flex flex-col gap-2">
+                        <p className="text-sm text-gray-500 font-bold">
+                          Cargo: <br />
+                          <span className="font-normal">{employee.job}</span>
+                        </p>
+                        <p className="text-sm text-gray-500 font-bold">
+                          Data de admissão:
+                          <br />
+                          <span className="font-normal">
+                            {new Date(
+                              employee.admission_date
+                            ).toLocaleDateString()}
+                          </span>
+                        </p>
+                        <p className="text-sm text-gray-500 font-bold">
+                          Telefone:
+                          <br />
+                          <span className="font-normal">
+                            {formatPhoneNumber(employee.phone)}
+                          </span>
+                        </p>
+                      </div>
+                    </div>
                   </td>
                 </tr>
               ))}
