@@ -4,6 +4,9 @@ import searchIcon from "./assets/search.svg";
 import Header from "./components/Header";
 import { formatPhoneNumber } from "./utils/formatPhoneNumber";
 
+const API_URL =
+  process.env.REACT_APP_API_URL || "http://localhost:3000/employees";
+
 type Employee = {
   id: string;
   name: string;
@@ -19,7 +22,7 @@ function App() {
   const [expandedRows, setExpandedRows] = useState<string[]>([]);
 
   useEffect(() => {
-    fetch("http://localhost:3000/employees")
+    fetch(API_URL)
       .then((response) => response.json())
       .then((data) => {
         setEmployees(data);
