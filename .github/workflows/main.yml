@@ -37,6 +37,8 @@ jobs:
           cache: 'npm'
       - name: Install dependencies
         run: yarn install --frozen-lockfile
+      - name: API URL
+        run: echo ${{secrets.REACT_APP_API_URL}}
       - name: Build
         run: npm run build
         env:
