@@ -1,30 +1,95 @@
-# React + TypeScript + Vite
+# BeTalent Front-end Technical Test Solution
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Índice
+1. [Sobre o Projeto](#sobre-o-projeto)
+2. [Mockup](#mockup)
+3. [Requisitos Gerais](#requisitos-gerais)
+4. [Tecnologias Utilizadas](#tecnologias-utilizadas)
+5. [Pré-requisitos](#pré-requisitos)
+6. [Instruções para Rodar a Aplicação](#instruções-para-rodar-a-aplicação)
+7. [Screenshots](#screenshots)
 
-Currently, two official plugins are available:
+## Sobre o Projeto
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Este projeto é uma solução para o desafio técnico de front-end da BeTalent. O objetivo é construir a visualização de uma tabela com dados fornecidos por uma API simulada utilizando json-server. O projeto deve ser responsivo e permitir a pesquisa de dados através de um input de pesquisa.
 
-## Expanding the ESLint configuration
+## Mockup
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+Para orientação de estilos, visualização desktop e mobile, e outros padrões, foi seguido o projeto no `Figma` fornecido pela BeTalent.
 
-- Configure the top-level `parserOptions` property like this:
+## Requisitos Gerais
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json', './tsconfig.app.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
-```
+### Colunas da Tabela
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+- Imagem (thumb do/a usuário/a)
+- Nome
+- Cargo
+- Data de admissão
+- Telefone
+
+### Funcionalidades Adicionais
+
+- Input de pesquisa para filtrar dados por cargo, nome e telefone.
+- Formatação de datas e telefones no front-end.
+
+## Tecnologias Utilizadas
+- `TypeScript`
+- `React.js`
+- `Tailwind CSS`
+
+## Pré-requisitos
+
+Certifique-se de ter as seguintes ferramentas instaladas em sua máquina:
+
+- `Git`
+- `Node.js`
+- `Yarn`
+
+## Instruções para Rodar a Aplicação
+
+1. **Clone o Repositório**
+
+   Clone este repositório do GitHub em sua máquina:
+
+   ```bash
+   git clone https://github.com/gialencar/desafio-be.git
+   # e entre na pasta do projeto
+   cd desafio-be
+   ```
+
+2. **Instale o json-server**
+
+   Caso você não tenha o json-server instalado, instale-o utilizando:
+
+   ```bash
+   npm install -g json-server
+   ```
+
+3. **Inicie o json-server**
+
+   ```bash
+   json-server --watch db.json
+   ```
+
+4. **Instale as Dependências do Projeto**
+
+   Na pasta do projeto, instale as dependências necessárias:
+
+   ```bash
+   yarn install
+   ```
+
+5. **Inicie o Projeto**
+
+   Execute o comando para iniciar o projeto:
+
+   ```bash
+   yarn start
+   ```
+
+## Screenshots
+
+![teste-be-capture-01](https://github.com/user-attachments/assets/de58355c-8bf6-444a-a28b-c48727545e51)
+
+
+![teste-be-capture-02](https://github.com/user-attachments/assets/d149a107-c3d3-4959-9c93-ef362310a669)
