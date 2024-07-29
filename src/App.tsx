@@ -5,7 +5,7 @@ import Header from "./components/Header";
 import { formatPhoneNumber } from "./utils/formatPhoneNumber";
 
 const API_URL =
-  process.env.REACT_APP_API_URL || "http://localhost:3000/employees";
+  process.env.VITE_API_URL || "http://localhost:3000/employees";
 
 type Employee = {
   id: string;
