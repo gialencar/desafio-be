@@ -26,10 +26,26 @@ h3 {
   font-weight: 400;
 }
 
+table {
+  table-layout: fixed;
+}
+
 th {
   font-size: 16px;
   font-style: normal;
   font-weight: 400;
   height: 47px;
   text-align: left;
+}
+
+td {
+  @apply py-2;
+
+  @media screen and (max-width: 768px) {
+    padding-top: 0.75rem;
+  }
+}
+
+tr {
+  @apply border;
 }

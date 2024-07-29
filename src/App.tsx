@@ -49,8 +49,64 @@ function App() {
         </div>
       </div>
 
-      <main className="max-w-screen-xl mx-auto flex justify-center px-8">
-        <table className="w-full">
+      <main className="max-w-screen-xl mx-auto flex justify-center px-8 max-sm:px-5">
+        {/* table mobile */}
+        <table className="sm:hidden w-full">
+          <thead className="bg-gradient-to-b from-blue-primary-gradient-start to-blue-primary-gradient-end text-white-neutral">
+            <tr>
+              <th className="rounded-tl-lg pl-4">FOTO</th>
+              <th className="text-center">NOME</th>
+              <th className="rounded-tr-lg text-right pr-8"> ● </th>
+              {/* <th>CARGO</th>
+              <th>DATA DE ADMISSÃO</th>
+              <th>TELEFONE</th>
+              <th ></th> */}
+            </tr>
+          </thead>
+          <tbody>
+            {employees
+              .filter((employee) => {
+                return (
+                  employee.name.toLowerCase().includes(search.toLowerCase()) ||
+                  employee.job.toLowerCase().includes(search.toLowerCase()) ||
+                  employee.phone.includes(search)
+                );
+              })
+              .map((employee) => (
+                <tr key={employee.id}>
+                  <td className="pl-4">
+                    <img
+                      src={employee.image}
+                      alt={employee.name}
+                      className="rounded-full w-[34px] h-[34px] mr-3"
+                    />
+                  </td>
+                  <td className="text-center">{employee.name}</td>
+                  <td className="text-right pr-5">
+                    <button className="">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="32"
+                        height="32"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        className="text-blue-primary-gradient-end"
+                      >
+                        <path d="m6 9 6 6 6-6" />
+                      </svg>
+                    </button>
+                  </td>
+                </tr>
+              ))}
+          </tbody>
+        </table>
+
+        {/* table desktop */}
+        <table className="w-full max-sm:hidden">
           <thead className="bg-gradient-to-b from-blue-primary-gradient-start to-blue-primary-gradient-end text-white-neutral">
             <tr>
               <th className="rounded-tl-lg pl-8">FOTO</th>
