@@ -84,8 +84,9 @@ Certifique-se de ter as seguintes ferramentas instaladas em sua máquina:
    Execute o comando para iniciar o projeto:
 
    ```bash
-   yarn start
+   yarn dev
    ```
+6. **Acesse a pagina em http://localhost:5173/**
 
 ## Screenshots
 
